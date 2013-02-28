@@ -1,0 +1,15 @@
+#!/bin/bash
+
+usage () {
+    echo "Usage: $0 in out"
+    exit 1
+}
+
+if [ $# -ne 2 ]; then
+    usage
+fi
+
+in=$1
+out=$2
+
+perl -ne 'm{c\.g\.m\.endpoints\.EndpointUrls\$ - request /public(\S+)} && print "$1\n"' <$in >$out
